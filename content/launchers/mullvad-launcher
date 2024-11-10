@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /opt/mullvad-browser/
+
+./start-mullvad-browser.desktop

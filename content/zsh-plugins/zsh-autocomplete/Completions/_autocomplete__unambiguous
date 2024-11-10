@@ -1,0 +1,30 @@
+#autoload
+
+# Does not work correctly.
+[[ $_comp_tags == history-lines ]] &&
+    return 1
+
+# Is not going to be correct.
+[[ -v _autocomplete__partial_list ]] &&
+    return 1
+
+# Doesn't make sense to show.
+(( compstate[nmatches] < 2 )) &&
+    return 1
+
+# Nothing to insert.
+[[ $IPREFIX$PREFIX$SUFFIX$ISUFFIX == *${compstate[unambiguous]:#?}* ]] &&
+    return 1
+
+local -P tag=unambiguous
+_tags $tag
+_tags ||
+    return
+_requested $tag ||
+    return
+
+typeset -g _autocomplete__unambiguous="$compstate[unambiguous]"
+
+builtin compadd -J "$tag" -x $'%{\e[0;2m%}%Bcommon substring:%b %F{0}%K{11}'"$compstate[unambiguous]%f%k"
+
+false
