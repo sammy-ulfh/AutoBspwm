@@ -99,7 +99,7 @@ Para utilizarlo y configurar el entorno con el script, es sencillo.
 
     Ahora comenzaría a trabajar el script de la siguiente manera:
 
-    [![Script](https://img.youtube.com/vi/YjeFjs_LgCQ/maxresdefault.jpg)](https://youtu.be/4bZofnCX02A)
+    [![Script](https://img.youtube.com/vi/YjeFjs_LgCQ/maxresdefault.jpg)](https://youtu.be/YjeFjs_LgCQ)
 
 6. Finalmente, seguiríamos lo siguiente que sería abrir todo para que se apliquen las configuraciones y podamos disfrutar totalmente del entorno configurado:
 
