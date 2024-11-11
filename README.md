@@ -1,7 +1,7 @@
 # AutoBspwm
 
 <p align="center">
-    <img width="500"
+    <img width="700"
         src="visual_content/images/AutoBspwm.png"
         alt="Una imagen del entorno configrado."
         style="float: left; margin-right: 10px;">
@@ -10,14 +10,14 @@
 __AutoBspwm__ es un script en bash  que automatiza la configuración de un entorno en Linux enfocado para el estudio de __ciberseguridad__, incluyendo la instalación de una aplicación como __Obsidian__ para la toma de apuntes.
 
 <p align="center">
-    <img width="500"
+    <img width="700"
         src="visual_content/images/fondo.png"
         alt="Una imagen del entorno configrado."
         style="float: left; margin-right: 10px;">
 </p>
 
 <p align="center">
-    <img width="500"
+    <img width="700"
         src="visual_content/images/terminal.png"
         alt="Una imagen del entorno configrado."
         style="float: left; margin-right: 10px;">
@@ -36,7 +36,7 @@ Además, en la carpeta __Notes__ se encuentran los apuntes indicando paso a paso
 ## Tabla de contenidos
 
 - [¿Cómo lo utilizo?](#¿Cómo-lo-utilizo?)
-- [Atajos del teclado](#Atajos-de-teclado)
+- [Atajos de teclado](#Atajos-de-teclado)
 - [Explicación del código](#Explicación-del-código)
 - [Créditos](#Créditos)
 
@@ -99,17 +99,17 @@ Para utilizarlo y configurar el entorno con el script, es sencillo.
 
     Ahora comenzaría a trabajar el script de la siguiente manera:
 
-    VIDEO DE DEMOSTRACION PENDIENTE
+    [![Script](https://img.youtube.com/vi/YjeFjs_LgCQ/maxresdefault.jpg)](https://youtu.be/4bZofnCX02A)
 
 6. Finalmente, seguiríamos lo siguiente que sería abrir todo para que se apliquen las configuraciones y podamos disfrutar totalmente del entorno configurado:
 
-    VIDEO DE ENTORNO PENDIENTE
+    [![Entorno](https://img.youtube.com/vi/4bZofnCX02A/maxresdefault.jpg)](https://youtu.be/4bZofnCX02A)
 
 Cualquier duda o paso no aplicado como la configuración del navegador, en la carpeta Notes se encontraran los apuntes tomados en Obsidian, paso a paso. 
 
 Ten en cuenta que deberás tener al menos conocimiento de como moverte por Linux, ya que hay cosas que no se explican del todo.
 
-## Atajos del teclado
+## Atajos de teclado
 
 
 - __Sistema__:
@@ -257,6 +257,12 @@ Además, agregará su configuración, la cual ya se encuentra en __AutoBspwm/.co
 - __obsidian__:
 
     Esta función se encarga de llevar la aplicacion __.AppImage__ de Obsidian almacenada en AutoBspwm a __/opt__ y además agrega un script que se encarga de abrirla como si de una aplicación del sistema se tratase.
+
+- __mullvad__:
+
+    Realiza la descarga de la versión más reciente de Mullvad browser y lo almacena en el directorio /opt, para después darle los permisos necesarios para que pueda ser ejecutado por el usuario no privilegiado.
+
+    Además, para evitar problemas con la ejecución, se crea el script Mullvad-launcher y se agrega a /usr/bin para poder ser ejecutado como una aplicación sin ningún problema.
 
 - __shell__:
 

@@ -391,7 +391,14 @@ function check_temp(){
 
 function obsidian(){
   echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Descargando e instalando obsidian...${endColour}"
-  move_to_downloads && cd AutoBspwm/content/obsidian &>/dev/null
+
+  temp_status="0"
+
+  move_to_downloads && cd AutoBspwm/content &>/dev/null
+  check_temp "$(echo "$?")"
+  mkdir obsidian &>/dev/null
+  check_temp "$(echo "$?")"
+  cd obsidian &>/dev/null
   check_temp "$(echo "$?")"
   
   wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.7.5/Obsidian-1.7.5.AppImage &>/dev/null
@@ -421,7 +428,9 @@ function obsidian(){
 }
 
 function mullvad(){
-  
+
+  temp_status="0"
+
   echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Descargando e instalando mullvad browser...${endColour}"
   move_to_downloads && cd AutoBspwm/content
   check_temp "$(echo "$?")"
@@ -505,7 +514,7 @@ function main(){
 ██████░██░░░██░░░░██░░░░██░░░██░██░░██░░░░░░██░██░░░░░██░██░██░██░██░██
 ██░░██░▀█████▀░░░░██░░░░▀█████▀░█████▀░██████▀░██░░░░░▀██▀▀██▀░██░██░██
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"
-  echo "𝑀𝑎𝑑𝑒 𝑏𝑦 𝑠𝑎𝑚𝑚𝑦-𝑢𝑙𝑓ℎ"
+  echo -e "${grayColour}𝑀𝑎𝑑𝑒 𝑏𝑦 𝑠𝑎𝑚𝑚𝑦-𝑢𝑙𝑓ℎ${endColour}"
   echo ""
   
   root_checker
