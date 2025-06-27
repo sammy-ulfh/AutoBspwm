@@ -132,7 +132,6 @@ function install_arch_packages(){
 		(yay -Sy awesome-git picom-git alacritty rofi todo-bin acpi acpid wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim brightnessctl alsa-utils alsa-tools lm_sensors mpd mpc mpdris2 ncmpcpp playerctl moreutils --needed --noconfirm) &>/dev/null
 		save_status "$(echo $?)"
         services_arch
-	elif [ "$yayu" ]; then
 	else
 		echo -e "\n${yellowColour}Es necesario tener instalado un AUR helper como YAY o PARU.${endColour}\n"
 		exit
