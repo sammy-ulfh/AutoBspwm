@@ -107,9 +107,19 @@ function update_upgrade(){
   
 }
 
+function services_arch(){
+  # For automatically launching mpd on login
+  systemctl --user enable mpd.service &>/dev/null
+  systemctl --user start mpd.service &>/dev/null
+
+  # For charger plug/unplug events (if you have a battery)
+  sudo systemctl enable acpid.service &>/dev/null
+  sudo systemctl start acpid.service &>/dev/null
+}
+
 function install_arch_packages(){
   	echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Instalando los paquetes necesarios...${endColour}"
-	(sudo pacman -S bspwm kitty neovim git base-devel wget dpkg --needed --noconfirm) &>/dev/null
+	(sudo pacman -S bspwm kitty neovim git base-devel wget dpkg neovim --needed --noconfirm) &>/dev/null
 
 	yayu=$(which yay 2>/dev/null)
 	paruu=$(which paru 2>/dev/null)
@@ -117,9 +127,12 @@ function install_arch_packages(){
 	if [ "$paruu" ]; then
 		(paru -Sy awesome-git picom-git alacritty rofi todo-bin acpi acpid wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim brightnessctl alsa-utils alsa-tools lm_sensors mpd mpc mpdris2 ncmpcpp playerctl moreutils --needed --noconfirm) &>/dev/null
 		save_status "$(echo $?)"
+        services_arch
 	elif [ "$yayu" ]; then
 		(yay -Sy awesome-git picom-git alacritty rofi todo-bin acpi acpid wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim brightnessctl alsa-utils alsa-tools lm_sensors mpd mpc mpdris2 ncmpcpp playerctl moreutils --needed --noconfirm) &>/dev/null
 		save_status "$(echo $?)"
+        services_arch
+	elif [ "$yayu" ]; then
 	else
 		echo -e "\n${yellowColour}Es necesario tener instalado un AUR helper como YAY o PARU.${endColour}\n"
 		exit
@@ -229,9 +242,17 @@ function polybar(){
   save_status "$(echo $?)"
   
   # fonts
-  sudo cp -f ./fonts/* /usr/share/fonts &>/dev/null
+  if [ "$(echo $1))" = "arch" ]; then
+    sudo cp -f ./fonts/* /usr/share/fonts/ &>/dev/null
+  else
+    sudo cp -f ./fonts/* /usr/share/fonts/truetype/ &>/dev/null
+  fi
   save_status "$(echo $?)"
-  cd /usr/share/fonts &>/dev/null
+  if [ "$(echo $1)" = "arch" ]; then
+    cd /usr/share/fonts &>/dev/null
+  else
+    cd /usr/local/share/fonts &>/dev/null
+  fi
   save_status "$(echo $?)"
   sudo cp -f $Dow/AutoBspwm/.config/fonts/Hack.zip . &>/dev/null
   save_status "$(echo $?)"
@@ -375,9 +396,9 @@ function neovim(){
   
   echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Configurando Neovim con NVChad...${endColour}"
 
-  git clone https://github.com/NvChad/starter ~/.config/nvim
+  git clone https://github.com/NvChad/starter "/home/$user/.config/nvim" &>/dev/null
   save_status "$(echo $?)"
-
+  sudo git clone https://github.com/NvChad/starter /root/.config/nvim &>/dev/null
 }
 
 function i3lock-fancy(){
@@ -558,7 +579,7 @@ function main(){
   kitty
   check_status "$status" "La kitty se ha actualizado correctamente." "Algo ha salido mal mientras se actualizaba la kitty, inténtelo de nuevo."
 
-  polybar
+  polybar "$system"
   check_status "$status" "La polybar se ha instalado y configurado correctamente." "Algo ha salido mal mientras se instalaba y configuraba la polybar, inténtelo de nuevo."
 
   picom
