@@ -395,6 +395,13 @@ function neovim(){
   
   echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Configurando Neovim con NVChad...${endColour}"
 
+  if [ -d  "/home/$user/.config/nvim" ]; then
+    rm -r "/home/$user/.config/nvim" &>/dev/null
+  fi
+
+  if [ -d "/root/.config/nvim" ]; then
+    sudo rm -r /root/.config/nvim &>/dev/null
+  fi
   git clone https://github.com/NvChad/starter "/home/$user/.config/nvim" &>/dev/null
   save_status "$(echo $?)"
   sudo git clone https://github.com/NvChad/starter /root/.config/nvim &>/dev/null
