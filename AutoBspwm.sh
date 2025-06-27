@@ -86,6 +86,10 @@ function update_upgrade(){
     echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Actualizando el sistema parrot...${endColour}"
     (sudo apt update) &>/dev/null && (sudo parrot-upgrade) &>/dev/null
     save_status "$(echo $?)"
+  elif [ "$system" == "arch" ]; then
+    echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Actualizando el sistema ArchLinux...${endColour}"
+    (sudo pacman -Syu) &>/dev/null
+    save_status "$(echo $?)"
   else
     echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Actualizando el sistema...${endColour}"
     if [ "$(cat "/etc/apt/sources.list" | wc -l)" -gt "3"  ]; then
@@ -101,6 +105,25 @@ function update_upgrade(){
     save_status "$(echo $?)"
   fi
   
+}
+
+function install_arch_packages(){
+  	echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Instalando los paquetes necesarios...${endColour}"
+	(sudo pacman -S bspwm kitty neovim git base-devel wget dpkg --needed --noconfirm) &>/dev/null
+
+	yayu=$(which yay 2>/dev/null)
+	paruu=$(which paru 2>/dev/null)
+
+	if [ "$paruu" ]; then
+		(paru -Sy awesome-git picom-git alacritty rofi todo-bin acpi acpid wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim brightnessctl alsa-utils alsa-tools lm_sensors mpd mpc mpdris2 ncmpcpp playerctl moreutils --needed --noconfirm) &>/dev/null
+		save_status "$(echo $?)"
+	elif [ "$yayu" ]; then
+		(yay -Sy awesome-git picom-git alacritty rofi todo-bin acpi acpid wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim brightnessctl alsa-utils alsa-tools lm_sensors mpd mpc mpdris2 ncmpcpp playerctl moreutils --needed --noconfirm) &>/dev/null
+		save_status "$(echo $?)"
+	else
+		echo -e "\n${yellowColour}Es necesario tener instalado un AUR helper como YAY o PARU.${endColour}\n"
+		exit
+	fi
 }
 
 function install_packages(){
@@ -206,9 +229,9 @@ function polybar(){
   save_status "$(echo $?)"
   
   # fonts
-  sudo cp -f ./fonts/* /usr/share/fonts/truetype/ &>/dev/null
+  sudo cp -f ./fonts/* /usr/share/fonts &>/dev/null
   save_status "$(echo $?)"
-  cd /usr/local/share/fonts &>/dev/null
+  cd /usr/share/fonts &>/dev/null
   save_status "$(echo $?)"
   sudo cp -f $Dow/AutoBspwm/.config/fonts/Hack.zip . &>/dev/null
   save_status "$(echo $?)"
@@ -352,20 +375,7 @@ function neovim(){
   
   echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Configurando Neovim con NVChad...${endColour}"
 
-
-  move_to_downloads
-  (sudo apt remove neovim -y) &>/dev/null
-  
-  cp -rf ./AutoBspwm/.config/nvim ~/.config &>/dev/null
-  save_status "$(echo $?)"
-
-  if [ -d /opt/nvim ]; then
-    sudo rm -rf /opt/nvim &>/dev/null
-  fi
-  sudo cp -rf ./AutoBspwm/content/nvim /opt &>/dev/null
-  save_status "$(echo $?)"
-
-  sudo cp -rf ./AutoBspwm/.config/nvim /root/.config &>/dev/null
+  git clone https://github.com/NvChad/starter ~/.config/nvim
   save_status "$(echo $?)"
 
 }
@@ -525,16 +535,21 @@ function main(){
   check_status "$(echo $?)" "Se ha realizado la comprobación del directorio." "Mueva el directorio AutoBspwm a la carpeta de descargas y/o ejecute el script dentro del mismo directorio AutoBspwm."
 
   if [ "$(cat "/etc/os-release" | grep -i "parrot")" ]; then
-    update_upgrade "parrot" 
+    update_upgrade "parrot"
+    system="parrot"
   elif [ "$(cat "/etc/os-release" | grep -i "arch")" ]; then
-    echo -e "\n${redColour}[!]${endColour} ${blueColour}El sistema operativo Arch Linux no está contemplado para la configuración de este entorno, ya que, puede requerir de algunos comandos distintos.\nLea la explicación del repositorio, así como los apuntes, y adáptelo a sus necesidades.${endColour}\n"
-    tput cnorm; exit 1
+    update_upgrade "arch"
+    system="arch"
   else
     update_upgrade
   fi
   check_status "$status" "Todo se ha actualizado correctamente." "Algo ha salido mal durante la actualización, inténtelo de nuevo."
 
-  install_packages
+  if [ "$system" == "arch" ]; then
+	install_arch_packages
+  else
+  	install_packages
+  fi
   check_status "$status" "Los paquetes se han instalado y actualizado correctamente." "Algo ha salido mal durante la instalación y actualización de los paquetes, inténtelo de nuevo."
 
   bspwm_sxhkd
@@ -579,8 +594,7 @@ function main(){
   if [ "$(cat "/etc/os-release" | grep -i "parrot")" ]; then
     update_upgrade "parrot" 
   elif [ "$(cat "/etc/os-release" | grep -i "arch")" ]; then
-    echo -e "\n${redColour}[!]${endColour} ${blueColour}El sistema operativo Arch Linux no está contemplado para la configuración de este entorno, ya que, puede requerir de algunos comandos distintos.\nLea la explicación del repositorio, así como los apuntes, y adáptelo a sus necesidades.${endColour}\n"
-    tput cnorm; exit 1
+    update_upgrade "arch" 
   else
     update_upgrade
   fi
