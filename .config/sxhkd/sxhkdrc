@@ -130,8 +130,8 @@ super + shift + x
 # Volumen
 # Subir volumen
 XF86AudioRaiseVolume
-    pactl set-sink-volume @DEFAULT_SINK@ +1%
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 # Bajar volumen
 XF86AudioLowerVolume
-    pactl set-sink-volume @DEFAULT_SINK@ -1%
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
