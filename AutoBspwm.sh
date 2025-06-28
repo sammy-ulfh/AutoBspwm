@@ -241,13 +241,13 @@ function polybar(){
   save_status "$(echo $?)"
   
   # fonts
-  if [ "$(echo $1))" = "arch" ]; then
+  if [ "$1" == "arch" ]; then
     sudo cp -f ./fonts/* /usr/share/fonts/ &>/dev/null
   else
     sudo cp -f ./fonts/* /usr/share/fonts/truetype/ &>/dev/null
   fi
   save_status "$(echo $?)"
-  if [ "$(echo $1)" = "arch" ]; then
+  if [ "$1" == "arch" ]; then
     cd /usr/share/fonts &>/dev/null
   else
     cd /usr/local/share/fonts &>/dev/null
