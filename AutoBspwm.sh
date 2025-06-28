@@ -119,7 +119,7 @@ function services_arch(){
 
 function install_arch_packages(){
   	echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Instalando los paquetes necesarios...${endColour}"
-	(sudo pacman -S bspwm kitty neovim git base-devel wget dpkg neovim --needed --noconfirm) &>/dev/null
+	(sudo pacman -S bspwm kitty neovim git base-devel wget dpkg neovim zsh --needed --noconfirm) &>/dev/null
 
 	yayu=$(which yay 2>/dev/null)
 	paruu=$(which paru 2>/dev/null)
