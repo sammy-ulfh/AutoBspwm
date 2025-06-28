@@ -36,6 +36,7 @@ Además, en la carpeta __Notes__ se encuentran los apuntes indicando paso a paso
 
 - [¿Cómo lo utilizo?](#¿Cómo-lo-utilizo?)
 - [Atajos de teclado](#Atajos-de-teclado)
+- [Información adicional](#Adicionalmente)
 - [Explicación del código](#Explicación-del-código)
 - [Créditos](#Créditos)
 
@@ -127,7 +128,7 @@ Los créditos del [Fondo2](./content/Fondos/fondo2.jpg) son para la desarrollado
     xwinwrap -ov -g 1920x1080 -- mpv -wid WID --panscan=1.0 --no-audio --no-osc --no-osd-bar --no-input-default-bindings --loop /path-of-video
     ```
 
-    La gran persona que me ayudó a saber de esta herramienta **[Jonathan](https://github.com/?)**
+    La gran persona que me ayudó a saber de esta herramienta: **[Jonathan](https://github.com/JRV-XVI/)**
 
 ## Atajos de teclado
 
