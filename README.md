@@ -26,10 +26,9 @@ __AutoBspwm__ es un script en bash  que automatiza la configuración de un entor
 
 ¡Este es el entorno que utiliza [s4vitar](https://www.youtube.com/@s4vitar), con pequeñas diferencias!
 
-Ha sido probado tanto en __Kali Linux__ como en __ParrotOS__ y funciona correctamente.
-La configuración también se aplica en __Ubuntu__, pero al entrar al entorno __da problemas con las interfaces gráficas de las aplicaciones__, por ende no está totalmente funcional en Ubuntu.
+Ha sido probado tanto en __Kali Linux__ como en __ParrotOS__ y funciona correctamente. ¡Ahora también se encuentra funcional para Arch Linux!
 
-Si lo aplicas en alguna distribución distinta, tendrá que ser basada en __Debian__. Ten en cuenta que podría dar algún error por las diferencias entre configuraciones que aplican algunas.
+Si lo aplicas en alguna distribución distinta, tendrá que ser basada en __Debian__. Ten en cuenta que podría dar algún error por las diferencias entre configuraciones que aplican algunas distribuciones, usualmente son errores sobre los repositorios que utilizan.
 
 Además, en la carpeta __Notes__ se encuentran los apuntes indicando paso a paso toda la configuración. Algunas cosas no son explicadas totalmente, por lo que tendrás que tener cierto conocimiento de movimiento en terminal y edición de archivos con Nvim o Nano.
 
@@ -61,7 +60,11 @@ Para utilizarlo y configurar el entorno con el script, es sencillo.
         ```bash
         sudo apt update && sudo apt upgrade -y
         ```
+    - __Arch Linux__:
 
+        ```bash
+        sudo pacman -Syu
+        ```
 
 2. Ahora, asegúrate de clonar el repositorio al directorio de descargas, con el siguiente comando:
 
@@ -108,6 +111,23 @@ Para utilizarlo y configurar el entorno con el script, es sencillo.
 Cualquier duda o paso no aplicado como la configuración del navegador, en la carpeta Notes se encontraran los apuntes tomados en Obsidian, paso a paso. 
 
 Ten en cuenta que deberás tener al menos conocimiento de como moverte por Linux, ya que hay cosas que no se explican del todo.
+
+## Adicionalmente
+
+Por defecto y por cuestiones de hacer más ligero todo el entorno, el fondo se coloca con **feh** y es estático. También es posible colocar un fondo con movimiento con la herramienta **xwinwrap**.
+
+En la carpeta [Fondos](./content/Fondos) se encuentran algunos fondos con movimiento y estáticos que podrías colocar a tu gusto, cambiando el comando que coloca, el cual se encuentra en el archivo **.config/bspwm/bspwmrc**.
+
+Los créditos del [Fondo2](./content/Fondos/fondo2.jpg) son para la desarrolladora e ilustradora **RavioliMavioli**.
+
+- **xwinwrap**:<br/>
+    El comando que te permite colocar un fondo con movimiento mediante la herramienta **xwinrap** es el siguiente:<br/>
+
+    ```shell
+    xwinwrap -ov -g 1920x1080 -- mpv -wid WID --panscan=1.0 --no-audio --no-osc --no-osd-bar --no-input-default-bindings --loop /path-of-video
+    ```
+
+    La gran persona que me ayudó a saber de esta herramienta **[Jonathan](https://github.com/?)**
 
 ## Atajos de teclado
 
