@@ -119,7 +119,7 @@ function services_arch(){
 
 function install_arch_packages(){
   	echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Instalando los paquetes necesarios...${endColour}"
-	(sudo pacman -S bspwm kitty neovim git base-devel wget dpkg neovim zsh --needed --noconfirm) &>/dev/null
+	(sudo pacman -S bspwm kitty neovim git base-devel wget dpkg neovim zsh feh polybar xorg-xinit xorg-server xorg-apps --needed --noconfirm) &>/dev/null
 
 	yayu=$(which yay 2>/dev/null)
 	paruu=$(which paru 2>/dev/null)
@@ -625,6 +625,11 @@ function main(){
     update_upgrade "arch" 
   else
     update_upgrade
+  fi
+
+  if [ "$system" == "arch" ]; then
+    echo "exec bspwm" > ~/xinitrc &>/dev/null
+    startx &>/dev/null
   fi
   tput cnorm
   check_status "$status" "Todo se ha todo se ha concluido correctamente, ejecute el comando \"kill -9 -1\" y seleccione el entorno de bspwm." "Algo ha salido mal durante la última actualización. Ejecute el comando \"kill -9 -1\", seleccione el entorno de bspwm e intentelo manualmente."
