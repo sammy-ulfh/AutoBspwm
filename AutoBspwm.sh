@@ -119,7 +119,7 @@ function services_arch(){
 
 function install_arch_packages(){
   	echo -e "\n${yellowColour}[+]${endColour} ${blueColour}Instalando los paquetes necesarios...${endColour}"
-	(sudo pacman -S bspwm kitty neovim git base-devel wget dpkg neovim zsh feh polybar xorg-xinit xorg-server xorg-apps net-tools --needed --noconfirm) &>/dev/null
+	(sudo pacman -S bspwm dash kitty neovim git base-devel wget dpkg neovim zsh feh polybar xorg-xinit xorg-server xorg-apps net-tools --needed --noconfirm) &>/dev/null
 
 	yayu=$(which yay 2>/dev/null)
 	paruu=$(which paru 2>/dev/null)
@@ -144,6 +144,9 @@ function install_packages(){
 
   (sudo apt install bspwm build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev moreutils curl net-tools -y) &>/dev/null
   save_status "$(echo $?)"
+
+  # for bspwm_resize
+  (sudo apt install dash -y) &>/dev/null
 
   (sudo apt install cmake libconfig-dev libdbus-1-dev libegl-dev libev-dev libgl-dev libepoxy-dev libpcre2-dev libpixman-1-dev libx11-xcb-dev libxcb1-dev libxcb-composite0-dev libxcb-damage0-dev libxcb-glx0-dev libxcb-image0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-util-dev libxcb-xfixes0-dev meson ninja-build uthash-dev zsh rofi polybar kitty imagemagick feh locate i3lock neovim -y) &>/dev/null
   save_status "$(echo $?)"
