@@ -135,3 +135,7 @@ XF86AudioRaiseVolume
 # Bajar volumen
 XF86AudioLowerVolume
     pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Mute/Unmute
+XF86AudioMute
+  amixer set Master toggle
