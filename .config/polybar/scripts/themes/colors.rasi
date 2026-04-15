@@ -1,13 +1,9 @@
-/* Color-Scheme For All Themes*/
-
 * {
-    background:    #ffffffff;
-    background-alt:    #ffffffff;
-    foreground:    #606060ff;
-    border:    #5895DCff;
-    selected:    #5895DCff;
-    urgent:    #EC407Aff;
-	logo:    #EC407Aff;
-	on:    #61C766ff;
-	off:    #EC7875ff;
+  bg:       #000000;  // Fondo negro
+  fg:       #ffffff;  // Texto blanco
+  bg-alt:   #111111;  // Alternativa de fondo más clara (opcional)
+  selected: #222222;  // Fondo para elemento seleccionado
+  urgent:   #ff0000;  // Rojo para urgente (si lo usas)
+  border:   #333333;  // Gris para bordes (suave)
 }
+

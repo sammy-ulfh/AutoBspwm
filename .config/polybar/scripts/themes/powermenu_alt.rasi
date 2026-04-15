@@ -1,24 +1,24 @@
+@import "colors.rasi"
+
 configuration {
     font:                           "Iosevka Nerd Font 10";
     show-icons:                     false;
-	icon-theme: 					"Papirus";
-    display-drun: 					":";
+    icon-theme:                     "Papirus";
+    display-drun:                   ":";
     drun-display-format:            "{name}";
     threads:                        0;
     scroll-method:                  0;
     disable-history:                false;
     fullscreen:                     false;
-	hide-scrollbar: 				true;
-	sidebar-mode: 					false;
+    hide-scrollbar:                 true;
+    sidebar-mode:                   false;
     location:                       3;
 }
 
-@import "colors.rasi"
-
 window {
     transparency:                   "real";
-    background-color:               @background;
-    text-color:                     @foreground;
+    background-color:               @bg;
+    text-color:                     @fg;
     border-radius:                  20px;
     height:                         27%;
     width:                          12%;
@@ -27,39 +27,38 @@ window {
 }
 
 prompt {
-    enabled: 						true;
-	padding: 						4px 4px 6px 6px;
-	background-color: 				@background;
-	text-color: 					@foreground;
+    enabled:                        true;
+    padding:                        4px 4px 6px 6px;
+    background-color:               @bg;
+    text-color:                     @fg;
 }
 
 textbox-prompt-colon {
-	expand: 						false;
-	str: 							"";
-    background-color:               @background;
-    text-color:                     @logo;
+    expand:                         false;
+    str:                            "";
+    background-color:               @bg;
+    text-color:                     @fg;
     padding:                        5px 0px 0px 10px;
-	font:							"feather 10";
+    font:                           "feather 10";
 }
 
 inputbar {
-	children: 						[ textbox-prompt-colon, prompt ];
-    background-color:               @background;
-    text-color:                     @foreground;
+    children:                       [ textbox-prompt-colon, prompt ];
+    background-color:               @bg;
+    text-color:                     @fg;
     expand:                         false;
-    border:                  		0px 0px 1px 0px;
+    border:                         0px 0px 1px 0px;
     border-radius:                  20px;
-    border-color:                  	@border;
-    margin:                         0px 0px 0px 0px;
-    padding:                        0px 0px 0px 0px;
+    border-color:                   @border;
+    margin:                         0px;
+    padding:                        0px;
     position:                       center;
 }
 
-
 entry {
-    background-color:               @background;
-    text-color:                     @foreground;
-    placeholder-color:              @foreground;
+    background-color:               @bg;
+    text-color:                     @fg;
+    placeholder-color:              @fg;
     expand:                         true;
     horizontal-align:               0;
     placeholder:                    "Search";
@@ -68,14 +67,13 @@ entry {
 }
 
 case-indicator {
-    background-color:               @background;
-    text-color:                     @foreground;
+    background-color:               @bg;
+    text-color:                     @fg;
     spacing:                        0;
 }
 
-
 listview {
-    background-color:               @background;
+    background-color:               @bg;
     columns:                        1;
     spacing:                        4px;
     cycle:                          true;
@@ -84,23 +82,25 @@ listview {
 }
 
 mainbox {
-    background-color:               @background;
+    background-color:               @bg;
     children:                       [ inputbar, listview ];
-    spacing:                       	5px;
-    padding:                        5px 5px 5px 5px;
+    spacing:                        5px;
+    padding:                        5px;
 }
 
 element {
-    background-color:               @background;
-    text-color:                     @foreground;
+    background-color:               @bg;
+    text-color:                     @fg;
     orientation:                    horizontal;
     border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
+    padding:                        6px;
 }
 
 element-icon {
     size:                           24px;
     border:                         0px;
+    text-color:                     @fg;
+    background-color:               inherit;
 }
 
 element-text {
@@ -108,35 +108,38 @@ element-text {
     horizontal-align:               0;
     vertical-align:                 0;
     margin:                         2px 0px 2px 2px;
+    text-color:                     @fg;
+    background-color:               inherit;
 }
 
 element normal.urgent,
 element alternate.urgent {
     background-color:               @urgent;
-    text-color:                     @foreground;
+    text-color:                     @fg;
     border-radius:                  9px;
 }
 
 element normal.active,
 element alternate.active {
-    background-color:               @background-alt;
-    text-color:                     @foreground;
+    background-color:               @bg;
+    text-color:                     @fg;
 }
 
 element selected {
     background-color:               @selected;
-    text-color:                     @background;
-    border:                  		0px;
+    text-color:                     @fg;
+    border:                         0px;
     border-radius:                  20px;
-    border-color:                  	@border;
+    border-color:                   @border;
 }
 
 element selected.urgent {
     background-color:               @urgent;
-    text-color:                     @foreground;
+    text-color:                     @fg;
 }
 
 element selected.active {
-    background-color:               @background-alt;
-    color:                          @foreground;
+    background-color:               @bg;
+    text-color:                     @fg;
 }
+
