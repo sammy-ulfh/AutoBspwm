@@ -151,6 +151,8 @@ function install_packages(){
   (sudo apt install cmake libconfig-dev libdbus-1-dev libegl-dev libev-dev libgl-dev libepoxy-dev libpcre2-dev libpixman-1-dev libx11-xcb-dev libxcb1-dev libxcb-composite0-dev libxcb-damage0-dev libxcb-glx0-dev libxcb-image0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-util-dev libxcb-xfixes0-dev meson ninja-build uthash-dev zsh rofi polybar kitty imagemagick feh locate i3lock neovim -y) &>/dev/null
   save_status "$(echo $?)"
 
+  sudo apt install pulseaudio-utils -y &>/dev/null
+
   (sudo apt update) &>/dev/null
   save_status "$(echo $?)"
 }

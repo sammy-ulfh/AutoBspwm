@@ -138,4 +138,4 @@ XF86AudioLowerVolume
 
 # Mute/Unmute
 XF86AudioMute
-  amixer set Master toggle
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
